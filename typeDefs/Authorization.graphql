@@ -1,0 +1,23 @@
+type User {
+  id: ID
+  name: String
+  email: String
+  password: String
+}
+
+type Query {
+  me: User
+}
+
+input AuthInput {
+  accessToken: String!
+}
+
+type Mutation {
+  authFacebook(input: AuthInput!): AuthenticateUserPayload
+}
+
+type AuthenticateUserPayload {
+  id: ID
+  token: String
+}

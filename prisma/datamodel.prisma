@@ -1,0 +1,22 @@
+type User {
+  id: ID! @id
+  email: String! @unique
+  name: String!
+  password: String!
+  subjects: [Subject!]! @relation(onDelete: SET_NULL)
+  todos: [Todo!]! @relation(onDelete: CASCADE)
+}
+type Subject {
+  SubjectId: ID! @id
+  title: String!@unique
+  professor: String!  
+  users: [User!]! @relation(link: TABLE, onDelete: SET_NULL)
+}
+type Todo{
+  TodoId: ID! @id
+  title: String!  
+  description: String!
+  dueDate: String!
+  user: User! @relation(link: INLINE onDelete: SET_NULL)
+  subject: Subject! @relation(link: INLINE onDelete: SET_NULL)
+}
